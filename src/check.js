@@ -21,6 +21,11 @@ function matchKeyword(title) {
   return config.keywords.find((k) => title.includes(k)) ?? null;
 }
 
+// 키워드가 있어도 이 단어가 들어간 글(합격자 발표 등)은 알림을 보내지 않는다.
+function isExcluded(title) {
+  return (config.excludeKeywords ?? []).some((k) => title.includes(k));
+}
+
 for (const site of config.sites) {
   const state = (data.sites[site.id] ??= {});
   Object.assign(state, { name: site.name, url: site.url });
@@ -34,7 +39,13 @@ for (const site of config.sites) {
       const key = `${site.id}:${p.id}`;
       const existing = posts.get(key);
       if (existing) {
-        Object.assign(existing, { title: p.title, url: p.url, date: p.date || existing.date });
+        Object.assign(existing, {
+          title: p.title,
+          url: p.url,
+          date: p.date || existing.date,
+          keyword: matchKeyword(p.title),
+          excluded: isExcluded(p.title),
+        });
         continue;
       }
       posts.set(key, {
@@ -42,6 +53,7 @@ for (const site of config.sites) {
         site: site.id,
         ...p,
         keyword: matchKeyword(p.title),
+        excluded: isExcluded(p.title),
         firstSeen: now,
         baseline,
         notified: baseline,
@@ -58,7 +70,7 @@ for (const site of config.sites) {
   }
 }
 
-const pending = [...posts.values()].filter((p) => p.keyword && !p.notified);
+const pending = [...posts.values()].filter((p) => p.keyword && !p.excluded && !p.notified);
 const fresh = pending.filter((p) => Date.now() - Date.parse(p.firstSeen) < NOTIFY_WINDOW_MS);
 for (const p of pending) if (!fresh.includes(p)) p.notified = 'skipped';
 
@@ -95,7 +107,9 @@ fs.mkdirSync('data', { recursive: true });
 fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2) + '\n');
 
 // 점검 보고(src/report.js)용 실행 기록
-run.newPosts = [...posts.values()].filter((p) => p.firstSeen === now && p.keyword && !p.baseline).map((p) => p.key);
+run.newPosts = [...posts.values()]
+  .filter((p) => p.firstSeen === now && p.keyword && !p.excluded && !p.baseline)
+  .map((p) => p.key);
 run.notifyFailed = failed;
 const runs = fs.existsSync(RUNS_FILE) ? JSON.parse(fs.readFileSync(RUNS_FILE, 'utf8')) : [];
 runs.push(run);

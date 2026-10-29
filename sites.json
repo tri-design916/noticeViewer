@@ -1,5 +1,6 @@
 {
   "keywords": ["생활지원사"],
+  "excludeKeywords": ["합격"],
   "sites": [
     {
       "id": "ihnw",

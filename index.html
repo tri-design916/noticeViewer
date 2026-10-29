@@ -39,6 +39,11 @@
   .post .title { font-weight: 600; margin: 2px 0; word-break: keep-all; }
   .post .title mark { background: var(--hl); color: inherit; padding: 0 2px; border-radius: 3px; }
   .post .date { font-size: .85rem; color: var(--muted); }
+  .tag {
+    display: inline-block; font-size: .75rem; color: var(--muted); border: 1px solid var(--line);
+    border-radius: 6px; padding: 0 6px; margin-left: 6px;
+  }
+  .post.excluded .title { color: var(--muted); font-weight: 500; }
   .badge {
     display: inline-block; font-size: .75rem; font-weight: 700; color: #fff; background: var(--new);
     border-radius: 6px; padding: 1px 6px; margin-right: 6px; vertical-align: 2px;
@@ -78,10 +83,10 @@ function render() {
         const isNew = !p.baseline && Date.now() - Date.parse(p.firstSeen) < NEW_DAYS * 864e5;
         let title = esc(p.title);
         if (p.keyword) title = title.replaceAll(esc(p.keyword), `<mark>${esc(p.keyword)}</mark>`);
-        return `<li><a class="post" href="${esc(p.url)}" target="_blank" rel="noopener">
+        return `<li><a class="post${p.excluded ? ' excluded' : ''}" href="${esc(p.url)}" target="_blank" rel="noopener">
           <div class="site">${esc(data.sites[p.site]?.name ?? p.site)}</div>
           <div class="title">${isNew ? '<span class="badge">NEW</span>' : ''}${title}</div>
-          <div class="date">${p.date ? '게시일 ' + esc(p.date.replaceAll('-', '.')) : ''}${isNew ? ' · ' + fmt(p.firstSeen) + ' 발견' : ''}</div>
+          <div class="date">${p.date ? '게시일 ' + esc(p.date.replaceAll('-', '.')) : ''}${isNew ? ' · ' + fmt(p.firstSeen) + ' 발견' : ''}${p.excluded && p.keyword ? '<span class="tag">알림 제외</span>' : ''}</div>
         </a></li>`;
       }).join('')
     : '<li class="empty">아직 해당하는 글이 없어요.</li>';
