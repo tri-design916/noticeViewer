@@ -1,3 +1,4 @@
 node_modules/
 .env
 .kakao_refresh_token
+.DS_Store
