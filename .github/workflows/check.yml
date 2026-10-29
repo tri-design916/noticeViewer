@@ -1,0 +1,73 @@
+name: 채용공고 확인
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # 09:00 KST
+    - cron: '0 6 * * *' # 15:00 KST
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['index.html']
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: 게시판 확인 및 알림
+        if: github.event_name != 'push'
+        run: npm run check
+        env:
+          KAKAO_REST_API_KEY: ${{ secrets.KAKAO_REST_API_KEY }}
+          KAKAO_CLIENT_SECRET: ${{ secrets.KAKAO_CLIENT_SECRET }}
+          KAKAO_REFRESH_TOKEN: ${{ secrets.KAKAO_REFRESH_TOKEN }}
+          KAKAO_RECEIVER_UUIDS: ${{ secrets.KAKAO_RECEIVER_UUIDS }}
+
+      - name: 재발급된 리프레시 토큰 저장
+        if: always() && hashFiles('.kakao_refresh_token') != ''
+        run: gh secret set KAKAO_REFRESH_TOKEN < .kakao_refresh_token
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+
+      - name: 결과 커밋
+        if: always() && github.event_name != 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/posts.json
+          git diff --cached --quiet || git commit -m "data: $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') 확인"
+          git push
+
+      - name: 페이지 파일 준비
+        if: always()
+        run: mkdir -p _site/data && cp index.html _site/ && cp data/posts.json _site/data/
+
+      - uses: actions/configure-pages@v5
+        if: always()
+      - uses: actions/upload-pages-artifact@v3
+        if: always()
+        with:
+          path: _site
+      - id: deploy
+        if: always()
+        uses: actions/deploy-pages@v4

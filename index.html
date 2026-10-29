@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>채용공고 알림</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #fff; --text: #1b1f24; --muted: #6b7280; --line: #e5e7eb;
+    --accent: #2563eb; --new: #dc2626; --ok: #16a34a; --warn: #d97706; --hl: #fef3c7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111418; --card: #1b1f24; --text: #e8eaed; --muted: #9aa0a6; --line: #2d333b;
+      --accent: #60a5fa; --new: #f87171; --ok: #4ade80; --warn: #fbbf24; --hl: #3d3214;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; }
+  .meta { color: var(--muted); font-size: .9rem; margin: 0 0 20px; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+  .tabs button {
+    flex: 1; padding: 12px; font: inherit; font-weight: 600; border-radius: 10px; cursor: pointer;
+    border: 1px solid var(--line); background: var(--card); color: var(--text);
+  }
+  .tabs button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  .post {
+    display: block; text-decoration: none; color: inherit; background: var(--card);
+    border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px;
+  }
+  .post:hover { border-color: var(--accent); }
+  .post .site { font-size: .85rem; color: var(--muted); }
+  .post .title { font-weight: 600; margin: 2px 0; word-break: keep-all; }
+  .post .title mark { background: var(--hl); color: inherit; padding: 0 2px; border-radius: 3px; }
+  .post .date { font-size: .85rem; color: var(--muted); }
+  .badge {
+    display: inline-block; font-size: .75rem; font-weight: 700; color: #fff; background: var(--new);
+    border-radius: 6px; padding: 1px 6px; margin-right: 6px; vertical-align: 2px;
+  }
+  .empty { color: var(--muted); text-align: center; padding: 32px 0; }
+  h2 { font-size: 1rem; margin: 32px 0 8px; }
+  .status li { display: flex; justify-content: space-between; gap: 12px; font-size: .9rem; padding: 6px 0; border-bottom: 1px solid var(--line); }
+  .status a { color: inherit; }
+  .status .ok { color: var(--ok); } .status .err { color: var(--warn); text-align: right; }
+</style>
+</head>
+<body>
+<main>
+  <h1>채용공고 알림</h1>
+  <p class="meta" id="meta">불러오는 중…</p>
+  <div class="tabs">
+    <button id="tab-match" aria-pressed="true">키워드 공고</button>
+    <button id="tab-all" aria-pressed="false">전체 글</button>
+  </div>
+  <ul id="list"></ul>
+  <h2>확인 중인 게시판</h2>
+  <ul class="status" id="status"></ul>
+</main>
+<script>
+const NEW_DAYS = 3;
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+const fmt = (iso) => new Date(iso).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+let data, showAll = false;
+
+function render() {
+  const posts = data.posts.filter((p) => showAll || p.keyword);
+  const list = document.getElementById('list');
+  list.innerHTML = posts.length
+    ? posts.map((p) => {
+        const isNew = !p.baseline && Date.now() - Date.parse(p.firstSeen) < NEW_DAYS * 864e5;
+        let title = esc(p.title);
+        if (p.keyword) title = title.replaceAll(esc(p.keyword), `<mark>${esc(p.keyword)}</mark>`);
+        return `<li><a class="post" href="${esc(p.url)}" target="_blank" rel="noopener">
+          <div class="site">${esc(data.sites[p.site]?.name ?? p.site)}</div>
+          <div class="title">${isNew ? '<span class="badge">NEW</span>' : ''}${title}</div>
+          <div class="date">${p.date ? '게시일 ' + esc(p.date) : ''}${isNew ? ' · ' + fmt(p.firstSeen) + ' 발견' : ''}</div>
+        </a></li>`;
+      }).join('')
+    : '<li class="empty">아직 해당하는 글이 없어요.</li>';
+  document.getElementById('tab-match').setAttribute('aria-pressed', !showAll);
+  document.getElementById('tab-all').setAttribute('aria-pressed', showAll);
+}
+
+document.getElementById('tab-match').onclick = () => { showAll = false; render(); };
+document.getElementById('tab-all').onclick = () => { showAll = true; render(); };
+
+fetch('data/posts.json', { cache: 'no-store' })
+  .then((r) => r.json())
+  .then((d) => {
+    data = d;
+    document.getElementById('tab-match').textContent = `'${d.keywords.join(', ')}' 공고`;
+    document.getElementById('meta').textContent = `마지막 확인 ${fmt(d.updatedAt)} · 매일 오전 9시, 오후 3시 자동 확인`;
+    document.getElementById('status').innerHTML = Object.values(d.sites).map((s) =>
+      `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>${
+        s.lastError
+          ? `<span class="err">확인 실패 (${esc(s.lastError)})</span>`
+          : `<span class="ok">정상</span>`}</li>`).join('');
+    render();
+  })
+  .catch(() => { document.getElementById('meta').textContent = '데이터를 불러오지 못했어요.'; });
+</script>
+</body>
+</html>
