@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['index.html']
+    paths: ['index.html', 'callback.html']
 
 permissions:
   contents: write
@@ -60,7 +60,7 @@ jobs:
 
       - name: 페이지 파일 준비
         if: always()
-        run: mkdir -p _site/data && cp index.html _site/ && cp data/posts.json _site/data/
+        run: mkdir -p _site/data && cp index.html callback.html _site/ && cp data/posts.json _site/data/
 
       - uses: actions/configure-pages@v5
         if: always()

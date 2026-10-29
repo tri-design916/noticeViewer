@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>알림 연결</title>
+<style>
+  :root { --bg: #f6f7f9; --card: #fff; --text: #1b1f24; --muted: #6b7280; --accent: #2563eb; --line: #e5e7eb; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #111418; --card: #1b1f24; --text: #e8eaed; --muted: #9aa0a6; --accent: #60a5fa; --line: #2d333b; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 19px/1.6 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  }
+  main { max-width: 480px; margin: 0 auto; padding: 32px 16px; text-align: center; }
+  h1 { font-size: 1.5rem; margin: 8px 0 12px; }
+  p { margin: 0 0 20px; word-break: keep-all; }
+  .icon { font-size: 3rem; }
+  button {
+    display: block; width: 100%; padding: 18px; margin-bottom: 12px; font: inherit; font-weight: 700;
+    border: 0; border-radius: 14px; background: var(--accent); color: #fff; cursor: pointer;
+  }
+  button.sub { background: var(--card); color: var(--text); border: 1px solid var(--line); }
+  .code {
+    font: 12px/1.4 ui-monospace, Menlo, monospace; color: var(--muted); word-break: break-all;
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px; margin-top: 20px;
+  }
+  .done { color: var(--accent); font-weight: 700; min-height: 1.6em; }
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+const params = new URLSearchParams(location.search);
+const code = params.get('code');
+const app = document.getElementById('app');
+
+if (!code) {
+  app.innerHTML = `<div class="icon">⚠️</div><h1>연결이 완료되지 않았어요</h1>
+    <p>${params.get('error') ? '동의를 취소하셨어요. ' : ''}보내준 링크를 처음부터 다시 열어주세요.</p>`;
+} else {
+  const message = `알림 연결 코드: ${code}`;
+  app.innerHTML = `<div class="icon">✅</div><h1>거의 다 됐어요!</h1>
+    <p>아래 버튼을 눌러 <b>카카오톡으로 보내주세요.</b></p>
+    <button id="share">카톡으로 보내기</button>
+    <button id="copy" class="sub">복사하기</button>
+    <p class="done" id="done"></p>
+    <div class="code">${code.replace(/[^\w-]/g, '')}</div>`;
+
+  document.getElementById('copy').onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(message);
+      document.getElementById('done').textContent = '복사됐어요. 카톡 대화방에 붙여넣어 보내주세요.';
+    } catch {
+      document.getElementById('done').textContent = '아래 글자를 길게 눌러 복사해주세요.';
+    }
+  };
+  document.getElementById('share').onclick = async () => {
+    if (navigator.share) {
+      try { await navigator.share({ text: message }); } catch {}
+    } else {
+      document.getElementById('copy').click();
+    }
+  };
+}
+</script>
+</body>
+</html>
