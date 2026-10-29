@@ -53,7 +53,7 @@ const server = http.createServer(async (req, res) => {
 
     const friends = await getFriends(token.access_token);
     if (!friends.length) {
-      console.log('⚠ 조회되는 친구가 없습니다. 받는 사람이 앱 팀원으로 등록되어 있고 --receiver 로그인을 마쳤는지 확인하세요.');
+      console.log('⚠ 조회되는 친구가 없습니다. 받는 사람이 [앱 > 멤버]에 등록되어 있고 --receiver 로그인을 마쳤는지 확인하세요.');
     } else {
       console.log('친구 목록 (받을 사람의 uuid를 KAKAO_RECEIVER_UUIDS에 넣으세요. 여러 명이면 쉼표로 구분):');
       for (const f of friends) console.log(`  ${f.profile_nickname}  →  ${f.uuid}`);
