@@ -3,35 +3,35 @@
     "ihnw": {
       "name": "정수사복지재단 노인통합지원센터",
       "url": "http://www.ihnw.or.kr/jm_bbs/bbs/board.php?bo_table=jm_notice3",
-      "lastSuccess": "2026-10-29T14:29:38.013Z",
+      "lastSuccess": "2026-10-29T15:09:47.922Z",
       "lastError": null,
       "count": 15
     },
     "gcwc": {
       "name": "김해시종합사회복지관",
       "url": "https://gcwc.or.kr/post/recruit",
-      "lastSuccess": "2026-10-29T14:29:38.013Z",
+      "lastSuccess": "2026-10-29T15:09:47.922Z",
       "lastError": null,
       "count": 15
     },
     "gnlifeline": {
       "name": "생명의전화 노인통합지원센터",
       "url": "http://www.gnlifeline.or.kr/web/community/01.html",
-      "lastSuccess": "2026-10-29T14:29:38.013Z",
+      "lastSuccess": "2026-10-29T15:09:47.922Z",
       "lastError": null,
       "count": 20
     },
     "bohyun": {
       "name": "보현행원",
       "url": "https://bohyun.kr/bbs/board.php?bo_table=m50",
-      "lastSuccess": "2026-10-29T14:29:38.013Z",
+      "lastSuccess": "2026-10-29T15:09:47.922Z",
       "lastError": null,
       "count": 16
     },
     "gdolbom": {
       "name": "김해돌봄지원센터",
       "url": "http://www.gdolbom.or.kr/bbs/board.php?bo_table=table44",
-      "lastSuccess": "2026-10-29T14:29:38.013Z",
+      "lastSuccess": "2026-10-29T15:09:47.922Z",
       "lastError": null,
       "count": 15
     }
@@ -47,7 +47,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gcwc:2654",
@@ -59,7 +60,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gcwc:2650",
@@ -71,7 +73,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gcwc:2647",
@@ -83,7 +86,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gcwc:2642",
@@ -95,7 +99,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gdolbom:52",
@@ -107,7 +112,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gcwc:2633",
@@ -119,7 +125,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gcwc:2632",
@@ -131,7 +138,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gnlifeline:7930",
@@ -143,7 +151,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gnlifeline:7929",
@@ -155,7 +164,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gcwc:2628",
@@ -167,7 +177,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gcwc:2622",
@@ -179,7 +190,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gcwc:2604",
@@ -191,7 +203,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gcwc:2602",
@@ -203,7 +216,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "bohyun:76",
@@ -215,7 +229,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gnlifeline:7927",
@@ -227,7 +242,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gcwc:2592",
@@ -239,7 +255,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "bohyun:75",
@@ -251,7 +268,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gnlifeline:7926",
@@ -263,7 +281,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "bohyun:74",
@@ -275,7 +294,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gcwc:2571",
@@ -287,7 +307,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gcwc:2564",
@@ -299,7 +320,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gcwc:2556",
@@ -311,7 +333,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gnlifeline:7925",
@@ -323,7 +346,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gcwc:2527",
@@ -335,7 +359,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "ihnw:192",
@@ -347,7 +372,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gdolbom:51",
@@ -359,7 +385,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gnlifeline:7924",
@@ -371,7 +398,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gnlifeline:7923",
@@ -383,7 +411,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gnlifeline:7922",
@@ -395,7 +424,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "ihnw:190",
@@ -407,7 +437,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gnlifeline:7921",
@@ -419,7 +450,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gnlifeline:7918",
@@ -431,7 +463,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gnlifeline:7916",
@@ -443,7 +476,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gnlifeline:7915",
@@ -455,7 +489,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gnlifeline:7913",
@@ -467,7 +502,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gnlifeline:7912",
@@ -479,7 +515,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "ihnw:184",
@@ -491,7 +528,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gnlifeline:7911",
@@ -503,7 +541,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gnlifeline:7910",
@@ -515,7 +554,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gnlifeline:7909",
@@ -527,7 +567,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "bohyun:72",
@@ -539,7 +580,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gnlifeline:7908",
@@ -551,7 +593,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "ihnw:179",
@@ -563,7 +606,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "ihnw:178",
@@ -575,7 +619,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "ihnw:177",
@@ -587,7 +632,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gnlifeline:7907",
@@ -599,7 +645,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gdolbom:50",
@@ -611,7 +658,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gdolbom:49",
@@ -623,7 +671,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "ihnw:176",
@@ -635,7 +684,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "ihnw:175",
@@ -647,7 +697,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "ihnw:174",
@@ -659,7 +710,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "ihnw:173",
@@ -671,7 +723,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gdolbom:48",
@@ -683,7 +736,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gdolbom:47",
@@ -695,7 +749,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "bohyun:71",
@@ -707,7 +762,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "ihnw:171",
@@ -719,7 +775,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "bohyun:70",
@@ -731,7 +788,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "ihnw:169",
@@ -743,7 +801,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gdolbom:46",
@@ -755,7 +814,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "ihnw:168",
@@ -767,7 +827,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "ihnw:167",
@@ -779,7 +840,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "ihnw:166",
@@ -791,7 +853,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "bohyun:69",
@@ -803,7 +866,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gdolbom:45",
@@ -815,7 +879,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gdolbom:44",
@@ -827,7 +892,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "bohyun:68",
@@ -839,7 +905,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "bohyun:67",
@@ -851,7 +918,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "bohyun:66",
@@ -863,7 +931,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "bohyun:65",
@@ -875,7 +944,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "bohyun:64",
@@ -887,7 +957,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gdolbom:43",
@@ -899,7 +970,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "bohyun:63",
@@ -911,7 +983,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "bohyun:62",
@@ -923,7 +996,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gdolbom:42",
@@ -935,7 +1009,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "bohyun:61",
@@ -947,7 +1022,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "bohyun:59",
@@ -959,7 +1035,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gdolbom:41",
@@ -971,7 +1048,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gdolbom:40",
@@ -983,7 +1061,8 @@
       "keyword": null,
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": false
     },
     {
       "key": "gdolbom:39",
@@ -995,7 +1074,8 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     },
     {
       "key": "gdolbom:38",
@@ -1007,10 +1087,11 @@
       "keyword": "생활지원사",
       "firstSeen": "2026-10-29T12:49:23.646Z",
       "baseline": true,
-      "notified": true
+      "notified": true,
+      "excluded": true
     }
   ],
-  "updatedAt": "2026-10-29T14:29:38.013Z",
+  "updatedAt": "2026-10-29T15:09:47.922Z",
   "keywords": [
     "생활지원사"
   ]
