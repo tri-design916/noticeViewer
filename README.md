@@ -154,6 +154,15 @@ GitHub › Settings › Developer settings › **Fine-grained tokens** › Gener
 </details>
 
 <details>
+<summary>초기 점검 보고 (매일 오전 10시)</summary>
+
+- 매일 10시에 어머니 카톡으로 점검 보고가 가요. 전날 오후 3시와 당일 오전 9시 확인이 잘 돌았는지, 새 공고가 있는지(있음/없음)를 알려줘요.
+- 새 공고가 있으면 원래 알림 메시지도 다시 보내요.
+- 그만 받으려면 `.github/workflows/report.yml` 파일을 지우면 돼요.
+- 보고 메시지의 "목록 보기" 버튼이 열리려면 카카오 콘솔 **앱 › 제품 링크 관리 › 웹 도메인**에 `https://tri-design916.github.io`를 등록해야 해요.
+</details>
+
+<details>
 <summary>사이트 · 키워드 바꾸기</summary>
 
 `sites.json`만 고치면 돼요. `postPattern`은 게시글 링크에서 글 번호를 뽑는 정규식이에요.

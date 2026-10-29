@@ -1,3 +1,6 @@
+import fs from 'node:fs';
+
+const NEW_TOKEN_FILE = '.kakao_refresh_token';
 const KAUTH = 'https://kauth.kakao.com';
 const KAPI = 'https://kapi.kakao.com';
 
@@ -33,6 +36,28 @@ export function refreshToken({ clientId, clientSecret, refreshToken }) {
     refresh_token: refreshToken,
     ...(clientSecret && { client_secret: clientSecret }),
   });
+}
+
+// 환경변수의 리프레시 토큰으로 액세스 토큰을 받는다. 재발급된 리프레시 토큰은 워크플로가 Secret에 다시 저장하도록 파일로 남긴다.
+export async function accessTokenFromEnv(env = process.env) {
+  const token = await refreshToken({
+    clientId: env.KAKAO_REST_API_KEY,
+    clientSecret: env.KAKAO_CLIENT_SECRET,
+    refreshToken: env.KAKAO_REFRESH_TOKEN,
+  });
+  if (token.refresh_token) {
+    fs.writeFileSync(NEW_TOKEN_FILE, token.refresh_token);
+    console.log('🔑 리프레시 토큰이 재발급되었습니다.');
+  }
+  return token.access_token;
+}
+
+export function receiverUuids(env = process.env) {
+  return env.KAKAO_RECEIVER_UUIDS.split(',').map((s) => s.trim()).filter(Boolean);
+}
+
+export function hasKakaoEnv(env = process.env) {
+  return Boolean(env.KAKAO_REST_API_KEY && env.KAKAO_REFRESH_TOKEN && env.KAKAO_RECEIVER_UUIDS);
 }
 
 export async function getFriends(accessToken) {

@@ -1,9 +1,10 @@
 import fs from 'node:fs';
 import { scrapeSite } from './scrape.js';
-import { refreshToken, sendToFriends, postTemplate } from './kakao.js';
+import { accessTokenFromEnv, receiverUuids, hasKakaoEnv, sendToFriends, postTemplate } from './kakao.js';
 
 const DATA_FILE = 'data/posts.json';
-const NEW_TOKEN_FILE = '.kakao_refresh_token';
+const RUNS_FILE = 'data/runs.json';
+const MAX_RUNS = 100;
 // 알림 설정 전에 쌓인 글이 한꺼번에 가지 않도록, 처음 발견된 지 이 기간 안의 글만 보낸다.
 const NOTIFY_WINDOW_MS = 3 * 24 * 60 * 60 * 1000;
 
@@ -14,6 +15,7 @@ const data = fs.existsSync(DATA_FILE)
 const posts = new Map(data.posts.map((p) => [p.key, p]));
 const now = new Date().toISOString();
 let failed = false;
+const run = { at: now, sites: {}, newPosts: [] };
 
 function matchKeyword(title) {
   return config.keywords.find((k) => title.includes(k)) ?? null;
@@ -47,9 +49,11 @@ for (const site of config.sites) {
       added++;
     }
     Object.assign(state, { lastSuccess: now, lastError: null, count: found.length });
+    run.sites[site.id] = true;
     console.log(`✔ ${site.name}: ${found.length}건 확인, 새 글 ${added}건${baseline ? ' (기준선)' : ''}`);
   } catch (e) {
     Object.assign(state, { lastError: e.message, lastErrorAt: now });
+    run.sites[site.id] = false;
     console.error(`✘ ${site.name}: ${e.message}`);
   }
 }
@@ -59,23 +63,14 @@ const fresh = pending.filter((p) => Date.now() - Date.parse(p.firstSeen) < NOTIF
 for (const p of pending) if (!fresh.includes(p)) p.notified = 'skipped';
 
 if (fresh.length) {
-  const env = process.env;
-  if (!env.KAKAO_REST_API_KEY || !env.KAKAO_REFRESH_TOKEN || !env.KAKAO_RECEIVER_UUIDS) {
+  if (!hasKakaoEnv()) {
     console.warn(`⚠ 카카오 설정이 없어 알림 ${fresh.length}건을 보내지 않았습니다.`);
   } else {
     try {
-      const token = await refreshToken({
-        clientId: env.KAKAO_REST_API_KEY,
-        clientSecret: env.KAKAO_CLIENT_SECRET,
-        refreshToken: env.KAKAO_REFRESH_TOKEN,
-      });
-      if (token.refresh_token) {
-        fs.writeFileSync(NEW_TOKEN_FILE, token.refresh_token);
-        console.log('🔑 리프레시 토큰이 재발급되었습니다.');
-      }
-      const uuids = env.KAKAO_RECEIVER_UUIDS.split(',').map((s) => s.trim()).filter(Boolean);
+      const accessToken = await accessTokenFromEnv();
+      const uuids = receiverUuids();
       for (const p of fresh) {
-        const res = await sendToFriends(token.access_token, uuids, postTemplate(data.sites[p.site].name, p));
+        const res = await sendToFriends(accessToken, uuids, postTemplate(data.sites[p.site].name, p));
         if (res.successful_receiver_uuids?.length) {
           p.notified = now;
           console.log(`💬 알림 전송: ${p.title}`);
@@ -97,5 +92,12 @@ data.posts = [...posts.values()].sort(
 );
 fs.mkdirSync('data', { recursive: true });
 fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2) + '\n');
+
+// 점검 보고(src/report.js)용 실행 기록
+run.newPosts = [...posts.values()].filter((p) => p.firstSeen === now && p.keyword && !p.baseline).map((p) => p.key);
+run.notifyFailed = failed;
+const runs = fs.existsSync(RUNS_FILE) ? JSON.parse(fs.readFileSync(RUNS_FILE, 'utf8')) : [];
+runs.push(run);
+fs.writeFileSync(RUNS_FILE, JSON.stringify(runs.slice(-MAX_RUNS), null, 2) + '\n');
 
 if (failed) process.exit(1);
