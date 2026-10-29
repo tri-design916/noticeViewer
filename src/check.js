@@ -87,8 +87,9 @@ if (fresh.length) {
 
 data.updatedAt = now;
 data.keywords = config.keywords;
+// 최신 글이 위로: 게시일 → 처음 발견 시각 → 글 번호
 data.posts = [...posts.values()].sort(
-  (a, b) => b.firstSeen.localeCompare(a.firstSeen) || b.date.localeCompare(a.date) || Number(b.id) - Number(a.id),
+  (a, b) => b.date.localeCompare(a.date) || b.firstSeen.localeCompare(a.firstSeen) || Number(b.id) - Number(a.id),
 );
 fs.mkdirSync('data', { recursive: true });
 fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2) + '\n');

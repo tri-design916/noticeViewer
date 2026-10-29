@@ -69,7 +69,9 @@ const fmt = (iso) => new Date(iso).toLocaleString('ko-KR', { timeZone: 'Asia/Seo
 let data, showAll = false;
 
 function render() {
-  const posts = data.posts.filter((p) => showAll || p.keyword);
+  const posts = data.posts
+    .filter((p) => showAll || p.keyword)
+    .sort((a, b) => b.date.localeCompare(a.date) || b.firstSeen.localeCompare(a.firstSeen));
   const list = document.getElementById('list');
   list.innerHTML = posts.length
     ? posts.map((p) => {
@@ -79,7 +81,7 @@ function render() {
         return `<li><a class="post" href="${esc(p.url)}" target="_blank" rel="noopener">
           <div class="site">${esc(data.sites[p.site]?.name ?? p.site)}</div>
           <div class="title">${isNew ? '<span class="badge">NEW</span>' : ''}${title}</div>
-          <div class="date">${p.date ? '게시일 ' + esc(p.date) : ''}${isNew ? ' · ' + fmt(p.firstSeen) + ' 발견' : ''}</div>
+          <div class="date">${p.date ? '게시일 ' + esc(p.date.replaceAll('-', '.')) : ''}${isNew ? ' · ' + fmt(p.firstSeen) + ' 발견' : ''}</div>
         </a></li>`;
       }).join('')
     : '<li class="empty">아직 해당하는 글이 없어요.</li>';
