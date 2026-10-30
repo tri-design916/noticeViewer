@@ -1,9 +1,8 @@
 # 초기 점검용 일일 보고. 더 이상 필요 없으면 이 파일만 지우면 된다.
 name: 점검 보고
 
+# 실행 시각은 cron-job.org가 10:00 KST에 workflow_dispatch로 호출한다.
 on:
-  schedule:
-    - cron: '0 1 * * *' # 10:00 KST
   workflow_dispatch:
 
 concurrency:

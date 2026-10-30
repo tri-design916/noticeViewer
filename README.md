@@ -171,8 +171,10 @@ GitHub › Settings › Developer settings › **Fine-grained tokens** › Gener
 <details>
 <summary>알아둘 점</summary>
 
-- GitHub의 예약 실행은 몇 분에서 수십 분 늦게 돌 수 있어요.
+- 실행 시각은 **cron-job.org**가 맡아요. GitHub 예약 실행은 정시에 몇 시간씩 늦거나 건너뛰는 일이 있어서 쓰지 않아요.
+  - 09:00, 15:00 → `check.yml` 실행 / 10:00 → `report.yml` 실행
+  - 호출 주소: `POST https://api.github.com/repos/tri-design916/noticeViewer/actions/workflows/<파일명>/dispatches`, 본문 `{"ref":"main"}`
+  - 토큰: Fine-grained token, 이 저장소만, **Actions: Read and write**
 - 카톡 알림이 실패하면 Actions가 빨간색으로 표시되고 GitHub가 메일로 알려줘요.
 - 사이트를 읽지 못하면 웹페이지 아래쪽 "확인 중인 게시판"에 표시돼요.
-- 저장소에 60일 동안 활동이 없으면 예약 실행이 꺼질 수 있어요. 꺼지면 Actions 탭에서 다시 켜세요.
 </details>

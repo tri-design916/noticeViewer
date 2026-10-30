@@ -1,9 +1,8 @@
 name: 채용공고 확인
 
+# 실행 시각은 cron-job.org가 09:00, 15:00 KST에 workflow_dispatch로 호출한다.
+# (GitHub schedule은 정시에 수 시간 지연·누락되는 일이 있어 쓰지 않는다)
 on:
-  schedule:
-    - cron: '0 0 * * *' # 09:00 KST
-    - cron: '0 6 * * *' # 15:00 KST
   workflow_dispatch:
   push:
     branches: [main]
