@@ -3,35 +3,35 @@
     "ihnw": {
       "name": "정수사복지재단 노인통합지원센터",
       "url": "http://www.ihnw.or.kr/jm_bbs/bbs/board.php?bo_table=jm_notice3",
-      "lastSuccess": "2026-10-31T00:00:47.411Z",
+      "lastSuccess": "2026-10-31T06:00:45.369Z",
       "lastError": null,
       "count": 15
     },
     "gcwc": {
       "name": "김해시종합사회복지관",
       "url": "https://gcwc.or.kr/post/recruit",
-      "lastSuccess": "2026-10-31T00:00:47.411Z",
+      "lastSuccess": "2026-10-31T06:00:45.369Z",
       "lastError": null,
       "count": 15
     },
     "gnlifeline": {
       "name": "생명의전화 노인통합지원센터",
       "url": "http://www.gnlifeline.or.kr/web/community/01.html",
-      "lastSuccess": "2026-10-31T00:00:47.411Z",
+      "lastSuccess": "2026-10-31T06:00:45.369Z",
       "lastError": null,
       "count": 20
     },
     "bohyun": {
       "name": "보현행원",
       "url": "https://bohyun.kr/bbs/board.php?bo_table=m50",
-      "lastSuccess": "2026-10-31T00:00:47.411Z",
+      "lastSuccess": "2026-10-31T06:00:45.369Z",
       "lastError": null,
       "count": 16
     },
     "gdolbom": {
       "name": "김해돌봄지원센터",
       "url": "http://www.gdolbom.or.kr/bbs/board.php?bo_table=table44",
-      "lastSuccess": "2026-10-31T00:00:47.411Z",
+      "lastSuccess": "2026-10-31T06:00:45.369Z",
       "lastError": null,
       "count": 15
     }
@@ -1104,7 +1104,7 @@
       "excluded": true
     }
   ],
-  "updatedAt": "2026-10-31T00:00:47.411Z",
+  "updatedAt": "2026-10-31T06:00:45.369Z",
   "keywords": [
     "생활지원사"
   ]

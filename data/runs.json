@@ -58,5 +58,17 @@
     },
     "newPosts": [],
     "notifyFailed": false
+  },
+  {
+    "at": "2026-10-31T06:00:45.369Z",
+    "sites": {
+      "ihnw": true,
+      "gcwc": true,
+      "gnlifeline": true,
+      "bohyun": true,
+      "gdolbom": true
+    },
+    "newPosts": [],
+    "notifyFailed": false
   }
 ]
