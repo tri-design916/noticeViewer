@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import { scrapeSite } from './scrape.js';
-import { accessTokenFromEnv, receiverUuids, hasKakaoEnv, sendToFriends, postTemplate } from './kakao.js';
+import { accessTokenFromEnv, receiverUuids, hasKakaoEnv, sendToFriends, alertTemplate } from './kakao.js';
 
 const DATA_FILE = 'data/posts.json';
 const RUNS_FILE = 'data/runs.json';
@@ -80,16 +80,11 @@ if (fresh.length) {
   } else {
     try {
       const accessToken = await accessTokenFromEnv();
-      const uuids = receiverUuids();
-      for (const p of fresh) {
-        const res = await sendToFriends(accessToken, uuids, postTemplate(data.sites[p.site].name, p));
-        if (res.successful_receiver_uuids?.length) {
-          p.notified = now;
-          console.log(`💬 알림 전송: ${p.title}`);
-        } else {
-          throw new Error(`전송 실패: ${JSON.stringify(res.failure_info)}`);
-        }
-      }
+      const template = alertTemplate(fresh, (p) => data.sites[p.site].name);
+      const res = await sendToFriends(accessToken, receiverUuids(), template);
+      if (!res.successful_receiver_uuids?.length) throw new Error(`전송 실패: ${JSON.stringify(res.failure_info)}`);
+      for (const p of fresh) p.notified = now;
+      console.log(`💬 알림 전송 (메시지 1개): ${fresh.map((p) => p.title).join(' / ')}`);
     } catch (e) {
       failed = true;
       console.error(`✘ 카카오 알림 실패: ${e.message}`);

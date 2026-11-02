@@ -92,3 +92,24 @@ export function postTemplate(siteName, post) {
     button_title: '공고 보기',
   };
 }
+
+export const PAGE_URL = 'https://tri-design916.github.io/noticeViewer/';
+const LIST_MAX = 3; // 리스트 템플릿 항목은 최대 3개
+
+// 새 공고 알림은 몇 건이든 메시지 1개로 보낸다(친구에게 보내기 쿼터가 작다).
+// 1건이면 텍스트, 2건 이상이면 리스트 템플릿. siteName(post) → 기관 이름
+export function alertTemplate(posts, siteName) {
+  if (posts.length === 1) return postTemplate(siteName(posts[0]), posts[0]);
+  const page = { web_url: PAGE_URL, mobile_web_url: PAGE_URL };
+  return {
+    object_type: 'list',
+    header_title: `📢 ${posts[0].keyword} 새 공고 ${posts.length}건`,
+    header_link: page,
+    contents: posts.slice(0, LIST_MAX).map((p) => ({
+      title: p.title,
+      description: [siteName(p), p.date].filter(Boolean).join(' · '),
+      link: { web_url: p.url, mobile_web_url: p.url },
+    })),
+    buttons: [{ title: '전체 목록 보기', link: page }],
+  };
+}

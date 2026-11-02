@@ -1,10 +1,9 @@
 // 초기 점검용 일일 보고: 지난 약 20시간(전날 15시 ~ 당일 9시 확인분)의 실행 결과를 받는 사람에게 보낸다.
-// 새 공고가 있으면 요약 뒤에 원래 알림 메시지도 다시 보낸다.
+// 공고 알림은 확인 시점에 이미 갔으므로 다시 보내지 않고, 보고 메시지 1개에 제목만 적는다.
 // REPORT_DRY_RUN=1 이면 보내지 않고 출력만 한다.
 import fs from 'node:fs';
-import { accessTokenFromEnv, receiverUuids, hasKakaoEnv, sendToFriends, postTemplate } from './kakao.js';
+import { accessTokenFromEnv, receiverUuids, hasKakaoEnv, sendToFriends, PAGE_URL } from './kakao.js';
 
-const PAGE_URL = 'https://tri-design916.github.io/noticeViewer/';
 const WINDOW_MS = 20 * 60 * 60 * 1000;
 
 const config = JSON.parse(fs.readFileSync('sites.json', 'utf8'));
@@ -39,20 +38,16 @@ if (!recent.length) {
   }
 }
 lines.push('', `새 ${config.keywords.join(', ')} 공고: ${newPosts.length ? `${newPosts.length}건 있음` : '없음'}`);
+for (const p of newPosts) lines.push(`· ${p.title}`);
 
-const messages = [
-  { object_type: 'text', text: lines.join('\n').slice(0, 200), link: { web_url: PAGE_URL, mobile_web_url: PAGE_URL }, button_title: '목록 보기' },
-  ...newPosts.map((p) => postTemplate(data.sites[p.site]?.name ?? p.site, p)),
-];
+let text = lines.join('\n');
+if (text.length > 200) text = text.slice(0, 199) + '…'; // 텍스트 템플릿 최대 200자
+const message = { object_type: 'text', text, link: { web_url: PAGE_URL, mobile_web_url: PAGE_URL }, button_title: '목록 보기' };
 
 if (process.env.REPORT_DRY_RUN || !hasKakaoEnv()) {
-  for (const m of messages) console.log(`--- (미전송)\n${m.text}\n`);
+  console.log(`--- (미전송)\n${text}\n`);
 } else {
-  const accessToken = await accessTokenFromEnv();
-  const uuids = receiverUuids();
-  for (const m of messages) {
-    const res = await sendToFriends(accessToken, uuids, m);
-    if (!res.successful_receiver_uuids?.length) throw new Error(`전송 실패: ${JSON.stringify(res.failure_info)}`);
-  }
-  console.log(`💬 점검 보고 전송 (메시지 ${messages.length}개)`);
+  const res = await sendToFriends(await accessTokenFromEnv(), receiverUuids(), message);
+  if (!res.successful_receiver_uuids?.length) throw new Error(`전송 실패: ${JSON.stringify(res.failure_info)}`);
+  console.log('💬 점검 보고 전송 (메시지 1개)');
 }
