@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import { scrapeSite } from './scrape.js';
-import { accessTokenFromEnv, receiverUuids, hasKakaoEnv, sendToFriends, alertTemplate } from './kakao.js';
+import { hasTelegramEnv, sendTelegram, alertText } from './telegram.js';
 
 const DATA_FILE = 'data/posts.json';
 const RUNS_FILE = 'data/runs.json';
@@ -75,19 +75,16 @@ const fresh = pending.filter((p) => Date.now() - Date.parse(p.firstSeen) < NOTIF
 for (const p of pending) if (!fresh.includes(p)) p.notified = 'skipped';
 
 if (fresh.length) {
-  if (!hasKakaoEnv()) {
-    console.warn(`⚠ 카카오 설정이 없어 알림 ${fresh.length}건을 보내지 않았습니다.`);
+  if (!hasTelegramEnv()) {
+    console.warn(`⚠ 텔레그램 설정이 없어 알림 ${fresh.length}건을 보내지 않았습니다.`);
   } else {
     try {
-      const accessToken = await accessTokenFromEnv();
-      const template = alertTemplate(fresh, (p) => data.sites[p.site].name);
-      const res = await sendToFriends(accessToken, receiverUuids(), template);
-      if (!res.successful_receiver_uuids?.length) throw new Error(`전송 실패: ${JSON.stringify(res.failure_info)}`);
+      await sendTelegram(alertText(fresh, (p) => data.sites[p.site].name));
       for (const p of fresh) p.notified = now;
-      console.log(`💬 알림 전송 (메시지 1개): ${fresh.map((p) => p.title).join(' / ')}`);
+      console.log(`💬 알림 전송: ${fresh.map((p) => p.title).join(' / ')}`);
     } catch (e) {
       failed = true;
-      console.error(`✘ 카카오 알림 실패: ${e.message}`);
+      console.error(`✘ 텔레그램 알림 실패: ${e.message}`);
     }
   }
 }

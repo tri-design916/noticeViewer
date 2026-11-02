@@ -1,8 +1,8 @@
-// 초기 점검용 일일 보고: 지난 약 20시간(전날 15시 ~ 당일 9시 확인분)의 실행 결과를 받는 사람에게 보낸다.
+// 초기 점검용 일일 보고: 지난 약 20시간(전날 15시 ~ 당일 9시 확인분)의 실행 결과를 텔레그램으로 보낸다.
 // 공고 알림은 확인 시점에 이미 갔으므로 다시 보내지 않고, 보고 메시지 1개에 제목만 적는다.
 // REPORT_DRY_RUN=1 이면 보내지 않고 출력만 한다.
 import fs from 'node:fs';
-import { accessTokenFromEnv, receiverUuids, hasKakaoEnv, sendToFriends, PAGE_URL } from './kakao.js';
+import { hasTelegramEnv, sendTelegram, PAGE_URL } from './telegram.js';
 
 const WINDOW_MS = 20 * 60 * 60 * 1000;
 
@@ -40,14 +40,12 @@ if (!recent.length) {
 lines.push('', `새 ${config.keywords.join(', ')} 공고: ${newPosts.length ? `${newPosts.length}건 있음` : '없음'}`);
 for (const p of newPosts) lines.push(`· ${p.title}`);
 
-let text = lines.join('\n');
-if (text.length > 200) text = text.slice(0, 199) + '…'; // 텍스트 템플릿 최대 200자
-const message = { object_type: 'text', text, link: { web_url: PAGE_URL, mobile_web_url: PAGE_URL }, button_title: '목록 보기' };
+lines.push('', `목록: ${PAGE_URL}`);
+const text = lines.join('\n');
 
-if (process.env.REPORT_DRY_RUN || !hasKakaoEnv()) {
+if (process.env.REPORT_DRY_RUN || !hasTelegramEnv()) {
   console.log(`--- (미전송)\n${text}\n`);
 } else {
-  const res = await sendToFriends(await accessTokenFromEnv(), receiverUuids(), message);
-  if (!res.successful_receiver_uuids?.length) throw new Error(`전송 실패: ${JSON.stringify(res.failure_info)}`);
-  console.log('💬 점검 보고 전송 (메시지 1개)');
+  await sendTelegram(text);
+  console.log('💬 점검 보고 전송');
 }

@@ -5,7 +5,8 @@
   "scripts": {
     "check": "node src/check.js",
     "kakao:auth": "node scripts/kakao-auth.js",
-    "kakao:test": "node scripts/kakao-test.js"
+    "kakao:test": "node scripts/kakao-test.js",
+    "telegram:setup": "node scripts/telegram-setup.js"
   },
   "author": "",
   "license": "ISC",
