@@ -142,5 +142,17 @@
     },
     "newPosts": [],
     "notifyFailed": false
+  },
+  {
+    "at": "2026-11-04T00:00:46.868Z",
+    "sites": {
+      "ihnw": true,
+      "gcwc": true,
+      "gnlifeline": true,
+      "bohyun": true,
+      "gdolbom": true
+    },
+    "newPosts": [],
+    "notifyFailed": false
   }
 ]
