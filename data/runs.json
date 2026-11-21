@@ -566,5 +566,17 @@
       "gnlifeline:7933"
     ],
     "notifyFailed": false
+  },
+  {
+    "at": "2026-11-21T06:00:43.266Z",
+    "sites": {
+      "ihnw": true,
+      "gcwc": true,
+      "gnlifeline": true,
+      "bohyun": true,
+      "gdolbom": true
+    },
+    "newPosts": [],
+    "notifyFailed": false
   }
 ]
