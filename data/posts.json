@@ -3,41 +3,67 @@
     "ihnw": {
       "name": "정수사복지재단 노인통합지원센터",
       "url": "http://www.ihnw.or.kr/jm_bbs/bbs/board.php?bo_table=jm_notice3",
-      "lastSuccess": "2026-11-26T06:00:56.009Z",
+      "lastSuccess": "2026-11-27T00:00:55.844Z",
       "lastError": null,
       "count": 15
     },
     "gcwc": {
       "name": "김해시종합사회복지관",
       "url": "https://gcwc.or.kr/post/recruit",
-      "lastSuccess": "2026-11-26T06:00:56.009Z",
+      "lastSuccess": "2026-11-27T00:00:55.844Z",
       "lastError": null,
       "count": 15
     },
     "gnlifeline": {
       "name": "생명의전화 노인통합지원센터",
       "url": "http://www.gnlifeline.or.kr/web/community/01.html",
-      "lastSuccess": "2026-11-26T06:00:56.009Z",
+      "lastSuccess": "2026-11-27T00:00:55.844Z",
       "lastError": null,
       "count": 20
     },
     "bohyun": {
       "name": "보현행원",
       "url": "https://bohyun.kr/bbs/board.php?bo_table=m50",
-      "lastSuccess": "2026-11-26T06:00:56.009Z",
+      "lastSuccess": "2026-11-27T00:00:55.844Z",
       "lastError": null,
       "count": 16
     },
     "gdolbom": {
       "name": "김해돌봄지원센터",
       "url": "http://www.gdolbom.or.kr/bbs/board.php?bo_table=table44",
-      "lastSuccess": "2026-11-26T06:00:56.009Z",
+      "lastSuccess": "2026-11-27T00:00:55.844Z",
       "lastError": null,
       "count": 15,
       "lastErrorAt": "2026-11-25T06:00:44.720Z"
     }
   },
   "posts": [
+    {
+      "key": "gnlifeline:7936",
+      "site": "gnlifeline",
+      "id": "7936",
+      "title": "생명의전화 노인통합지원센터 사무원 겸 사회복지사 채용 공고",
+      "url": "http://www.gnlifeline.or.kr/web/community/01.html?ptype=view&idx=7936&page=1&code=notice",
+      "date": "2026-11-26",
+      "keyword": null,
+      "excluded": false,
+      "firstSeen": "2026-11-27T00:00:55.844Z",
+      "baseline": false,
+      "notified": false
+    },
+    {
+      "key": "gnlifeline:7935",
+      "site": "gnlifeline",
+      "id": "7935",
+      "title": "생명의전화 노인통합지원센터 사회복지사 채용 최종합격자 공고",
+      "url": "http://www.gnlifeline.or.kr/web/community/01.html?ptype=view&idx=7935&page=1&code=notice",
+      "date": "2026-11-26",
+      "keyword": null,
+      "excluded": true,
+      "firstSeen": "2026-11-27T00:00:55.844Z",
+      "baseline": false,
+      "notified": false
+    },
     {
       "key": "gnlifeline:7934",
       "site": "gnlifeline",
@@ -1183,7 +1209,7 @@
       "excluded": true
     }
   ],
-  "updatedAt": "2026-11-26T06:00:56.009Z",
+  "updatedAt": "2026-11-27T00:00:55.844Z",
   "keywords": [
     "생활지원사"
   ]
